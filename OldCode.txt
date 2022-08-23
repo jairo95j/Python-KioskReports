@@ -1,0 +1,121 @@
+
+# # Loop - Ping Kiosk from 1-9
+# for x in range(0o1, 10):
+#     kiosk = (kioskAppend + "0" + str(x))
+#     response = os.system("ping -c 1 " + kiosk)
+#     # Check for the response...
+#     if response == 0:
+#         KioskReport.write(kiosk + " is up!\n")
+#         # print kiosk, 'is up!'
+#     else:
+#         KioskReport.write(kiosk + " is down!\n")
+
+# Loop - Ping Kiosk from 11-30
+# for x in range(11, 31):
+#     kiosk = (kioskAppend + str(x))
+#     response = os.system("ping -c 1 " + kiosk)
+#     # Check for the response ...
+#     if response == 0:
+#         KioskReport.write(kiosk + " is up!\n")
+#         # Print kiosk, 'is up!'
+#     else:
+#         KioskReport.write(kiosk + " is down!\n")
+
+________________FULL CODE FILE____________________________
+import os
+import datetime
+
+# Variables
+# Strings
+kioskAppend = "cmp-k-"
+currentDateTime = datetime.datetime.now().strftime("%m-%d-%y-%H-%M" + "\n")
+
+# Lists
+kioskUp = []
+kioskDown = []
+
+# Create file named KioskReport.txt and enters the following information
+KioskReport = open("kioskReport.txt", 'w')
+KioskReport.write(currentDateTime)
+
+
+def ping_kiosk():
+    # Loop - Ping Kiosk from 1-9
+    for x in range(0o1, 10):
+        kiosk = (kioskAppend + "0" + str(x))
+        response = os.system("ping -c 1 " + kiosk)
+        # Check for the response...
+        if response == 0:
+            kioskUp.append(kiosk)
+            KioskReport.write(kiosk + " is up!\n")
+            # print kiosk, 'is up!'
+        else:
+            kioskDown.append(kiosk)
+            KioskReport.write(kiosk + " is down!\n")
+
+    # Loop - Ping Kiosk from 11-30
+    for x in range(11, 31):
+        kiosk = (kioskAppend + str(x))
+        response = os.system("ping -c 1 " + kiosk)
+        # Check for the response ...
+        if response == 0:
+            kiosk_up(kiosk)
+            KioskReport.write(kiosk + " is up!\n")
+            # Print kiosk, 'is up!'
+        else:
+            kiosk_down(kiosk)
+            KioskReport.write(kiosk + " is down!\n")
+
+
+def kiosk_up(kiosk):
+    kioskUp.append(kiosk)
+    return
+
+
+def kiosk_down(kiosk):
+    kioskDown.append(kiosk)
+    return
+
+
+ping_kiosk()
+
+
+# Ends and Closes the input into KioskReport.txt
+KioskReport.close()
+
+
+____________________________________________________________________
+def ping_kiosk():
+    # Loop - Ping Kiosk from 1-9
+    for x in range(0o1, 10):
+        kiosk = (kioskAppend + "0" + str(x))
+        response = os.system("ping -c 1 " + kiosk)
+        # Check for the response...
+        if response == 0:
+            kioskUp.append(kiosk)
+        else:
+            kioskDown.append(kiosk)
+
+    # Loop - Ping Kiosk from 11-30
+    for x in range(11, 31):
+        kiosk = (kioskAppend + str(x))
+        response = os.system("ping -c 1 " + kiosk)
+        # Check for the response ...
+        if response == 0:
+            kiosk_up(kiosk)
+        else:
+            kiosk_down(kiosk)
+
+____________________________________________________________________
+kiosk_east = [14, 17, 21, 22, 25]
+kiosk_second_floor = [6, 15]
+kiosk_west = [1, 2, 12, 20, 28]
+kiosk_temp = [11, 18, 19, 24, 9]
+kiosk_escalator = [4, 7, 29]
+kiosk_valet = [3, 8, 10, 16, 27, 30]
+kiosk_one_ofs = {
+    "23": "Food Court",
+    "13": "Marketing",
+    "26": "RD1",
+    "5": "RD3"
+}
